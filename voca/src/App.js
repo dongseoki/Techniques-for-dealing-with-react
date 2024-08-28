@@ -1,5 +1,6 @@
 import "./App.css";
-
+import Hello from "./component/Hello";
+import Welcome from "./component/Welcome";
 function App() {
   const name = "React";
   const naver = {
@@ -9,15 +10,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1
-        style={{
-          color: "blue",
-          backgroundColor: "yellow",
-        }}
-      >
-        Hello {name}! {naver.name} 바
-      </h1>
-      <a href={naver.url}>네이버로 이동</a>
+      <Hello />
+      <Welcome />
+      <Hello />
+      <Hello />
     </div>
   );
 }
