@@ -1,19 +1,32 @@
-import "./App.css";
-import Hello from "./component/Hello";
+import Day from "./component/Day";
+import DayList from "./component/DayList";
+import Header from "./component/Header";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import EmptyPage from "./component/EmptyPage";
 
 function App() {
-  const name = "React";
-  const naver = {
-    name: "Naver",
-    url: "https://www.naver.com",
-  };
-
   return (
-    <div className="App">
-      <Hello age={10}/>
-      <Hello age={20}/>
-      <Hello age={30}/>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        {/* <Routes>
+          <Route exact path="/">
+            <DayList />
+          </Route>
+          <Route path="/day/:day">
+            <Day />
+          </Route>
+          <Route>
+            <EmptyPage />
+          </Route>
+        </Routes> */}
+        <Routes>
+          <Route path="/" element={<DayList />} />
+          <Route path="/day/:day" element={<Day />} />
+          <Route path="*" element={<EmptyPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
