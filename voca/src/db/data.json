@@ -15,6 +15,14 @@
     {
       "id": "4",
       "day": 4
+    },
+    {
+      "id": "6c7b",
+      "day": 5
+    },
+    {
+      "id": "0bd5",
+      "day": 6
     }
   ],
   "words": [
@@ -45,6 +53,13 @@
       "eng": "pencil",
       "kor": "연필",
       "isDone": false
+    },
+    {
+      "id": "1a90",
+      "day": "6",
+      "eng": "chair",
+      "kor": "의자",
+      "isDone": true
     }
   ]
 }
