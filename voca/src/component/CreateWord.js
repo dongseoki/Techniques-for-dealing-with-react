@@ -1,12 +1,17 @@
 import {useRef} from "react";
 import {useNavigate} from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import {useState} from "react";
 
 export default function CreateWord() {
     const days = useFetch("http://localhost:3001/days");
     const history = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
     function onSubmit(e) {
         e.preventDefault();
+        if (!isLoading) {
+            setIsLoading(true);
+        }
         fetch(`http://localhost:3001/words/`, {
             method: "POST",
             headers: {
@@ -22,6 +27,7 @@ export default function CreateWord() {
             if (res.ok) {
                 alert("생성이 완료되었습니다.");
                 history(`/day/${dayRef.current.value}`);
+                setIsLoading(false);
             }
         });
     }
