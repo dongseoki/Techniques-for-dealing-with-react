@@ -1,3 +1,5 @@
+'use client';
+
 import { Header } from "semantic-ui-react";
 import Gnb from "./Gnb";
 

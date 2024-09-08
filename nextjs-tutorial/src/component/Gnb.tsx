@@ -1,5 +1,7 @@
 import { Menu } from "semantic-ui-react";
 
+// 여기서 서버사이드렌더링을 적용해봅시다
+
 export default function Gnb() {
   const activeItem = "home";
   return (
