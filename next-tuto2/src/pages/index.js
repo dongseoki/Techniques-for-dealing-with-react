@@ -5,54 +5,42 @@ import { Divider, Header, Loader } from "semantic-ui-react";
 import ItemList from "../../src/component/ItemList";
 import styles from "../styles/Home.module.css";
 
-export default function Home() {
-  const [list, setList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const API_URL =
-    "http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline";
-
-  function getData() {
-    Axios.get(API_URL).then((res) => {
-      console.log(res.data);
-      setList(res.data);
-      setIsLoading(false);
-    });
-  }
-
-  useEffect(() => {
-    getData();
-  }, []);
+export default function Home({ list }) {
+  // if (!list) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div>
       <Head>
         <title>HOME | 코딩앙마</title>
-        <meta name="description" content="코딩앙마 홈입니다." />
+        <meta name="description" content="코딩 앙마 홈입니다."></meta>
       </Head>
-      {isLoading && (
-        <div className={styles.wrap}>
-          <Loader inline="centered" active>
-            Loading
-          </Loader>
-        </div>
-      )}
-      {!isLoading && (
-        <>
-          <Header as="h3" style={{ paddingTop: 40 }}>
-            베스트 상품
-          </Header>
-          <Divider />
-          <ItemList list={list.slice(0, 3)} />
-          <Header as="h3" style={{ paddingTop: 40 }}>
-            신상품
-          </Header>
-          <Divider />
-          <ItemList list={list.slice(3, 6)} />
-        </>
-      )}
+      <>
+        <Header as="h3" style={{ paddingTop: 40 }}>
+          베스트 상품
+        </Header>
+        <Divider />
+        <ItemList list={list.slice(0, 9)} />
+        <Header as="h3" style={{ paddingTop: 40 }}>
+          신상품
+        </Header>
+        <Divider />
+        <ItemList list={list.slice(9)} />
+      </>
     </div>
   );
 }
 
-// axios
+export async function getStaticProps() {
+  const apiUrl = process.env.apiUrl;
+  const res = await Axios.get(apiUrl);
+  const data = res.data;
+
+  return {
+    props: {
+      list: data,
+      name: process.env.name,
+    },
+  };
+}
