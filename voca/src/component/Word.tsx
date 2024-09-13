@@ -1,6 +1,18 @@
 import { useState } from "react";
 
-export default function Word({ word: w }) {
+interface IProps {
+  word: IWord;
+}
+
+export interface IWord {
+  day: string;
+  eng: string;
+  kor: string;
+  isDone: boolean;
+  id: number;
+}
+
+export default function Word({ word: w }: IProps) {
   const [word, setWord] = useState(w);
   const [isShow, setIsShow] = useState(false);
   const [isDone, setIsDone] = useState(word.isDone);
@@ -14,14 +26,12 @@ export default function Word({ word: w }) {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        // "Access-Control-Allow-Origin": "*",
-        // "Access-Control-Allow-Credentials": true,
       },
       body: JSON.stringify({
         ...word,
         isDone: !isDone,
       }),
-    }).then((res) => {
+    }).then(res => {
       if (res.ok) {
         setIsDone(!isDone);
       }
@@ -32,9 +42,12 @@ export default function Word({ word: w }) {
     if (window.confirm("삭제 하시겠습니까?")) {
       fetch(`http://localhost:3001/words/${word.id}`, {
         method: "DELETE",
-      }).then((res) => {
+      }).then(res => {
         if (res.ok) {
-          setWord({ id: 0 });
+          setWord({
+            ...word,
+            id: 0,
+          });
         }
       });
     }
