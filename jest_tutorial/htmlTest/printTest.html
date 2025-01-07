@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Example</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* 인쇄 스타일 */
+        @media print {
+            /* 전체 화면 숨기기 */
+            /* body * {
+                display: none;
+            } */
+
+            /* 특정 테이블만 표시 */
+            #print-table {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>웹 페이지</h1>
+    <p>이 내용은 화면에만 보입니다.</p>
+
+    <!-- 인쇄하고 싶은 테이블
+    <table id="print-table" border="1">
+        <tr>
+            <th>이름</th>
+            <th>나이</th>
+        </tr>
+        <tr>
+            <td>홍길동</td>
+            <td>30</td>
+        </tr>
+    </table> -->
+
+    <p>이 내용도 화면에만 보입니다.</p>
+
+    <button onclick="window.print()">인쇄</button>
+</body>
+    <!-- 인쇄하고 싶은 테이블 -->
+<!-- <table id="print-table" border="1">
+    <tr>
+        <th>이름</th>
+        <th>나이</th>
+    </tr>
+    <tr>
+        <td>홍길동</td>
+        <td>30</td>
+    </tr>
+</table> -->
+</html>
